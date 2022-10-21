@@ -1,0 +1,9 @@
+.cartwidget-img {
+    width: 40px;
+    border-radius: 20%;
+    
+    padding: 5%;
+    text-align: center !important;
+    align-content: center !important;
+    vertical-align: middle !important;
+}
