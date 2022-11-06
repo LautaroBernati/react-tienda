@@ -20,7 +20,7 @@ function App() {
           <Route
             path='/'
             element={
-              <h1 className='text-center'>Esto va a ser un Home</h1>
+              <h1 className='text-center w3-animate-opacity'>Esto va a ser un Home</h1>
             }
             >
           </Route>

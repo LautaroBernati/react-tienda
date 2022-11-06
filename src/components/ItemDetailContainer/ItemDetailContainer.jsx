@@ -17,7 +17,7 @@ function ItemDetailContainer() {
     }, [id]);
 
     return (
-        <>
+        <div className="w3-animate-opacity">
             <div className="card" style={{ width: "18rem" }}>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
@@ -46,7 +46,7 @@ function ItemDetailContainer() {
                     </p>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
