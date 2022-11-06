@@ -1,5 +1,6 @@
 import "./navbar.css";
 import CartWidget from "./CartWidget/CartWidget";
+import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
@@ -20,15 +21,22 @@ function NavBar() {
                         <a className="nav-link" href="/about">Acerca De</a>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Categorias
                             </a>
+                            
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="/masculinos">Masculinos</a>
-                                <a className="dropdown-item" href="/femeninos">Femeninos</a>
-                                <a className="dropdown-item" href="/unisex">Unisex</a>
+                                <Link className="dropdown-item" to={"/products"}>Todos</Link>
+                                <Link className="dropdown-item" to={"/products/category/day"}>Dia</Link>
+                                <Link className="dropdown-item" to={"/products/category/night"}>Noche</Link>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Placeholder</a>
+                                {/* <a className="dropdown-item" href="#"> */}
+                                <button className="dropdown-item">
+                                    Placeholder
+                                </button>
+                                {/* </a> */}
+                                
                             </div>
                         </li>
                         <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="coming soon">
