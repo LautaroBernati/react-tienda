@@ -6,7 +6,7 @@ function getItemsFromAPI() {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(PRODUCTS);
-        }, 1000);
+        }, 1500);
     });
 }
 
@@ -20,7 +20,7 @@ function getSingleItemFromAPI(idParams) {
             } else {
                 reject(new Error("El item no existe."));
             }
-        }, 500);
+        }, 1000);
     });
 }
 
@@ -31,7 +31,7 @@ function getItemsFromAPIByCategory(categoryid) {
                 (item) => item.category === categoryid
             );
             resolve(itemsRequested);
-        }, 500);
+        }, 1250);
     });
 }
 

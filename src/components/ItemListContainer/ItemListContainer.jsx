@@ -25,7 +25,9 @@ function ItemListContainer() {
   return (
       <>
         <ItemList productsList={productsList} />
-        <p>Cantidad de resultados: {productsList.length} </p>
+        <div className="container">
+          <p>Cantidad de resultados: {productsList.length} </p>
+        </div>
       </>
     );
 }

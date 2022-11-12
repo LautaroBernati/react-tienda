@@ -7,7 +7,8 @@ export const PRODUCTS = [
         price100ml: 4392,
         price60ml: 3371,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 4
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ export const PRODUCTS = [
         price100ml: 4518,
         price60ml: 3479,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 5
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ export const PRODUCTS = [
         price100ml: 4518,
         price60ml: 3479,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 7
     },
     {
         id: 4,
@@ -37,7 +40,8 @@ export const PRODUCTS = [
         price100ml: 5203,
         price60ml: 4005,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 3
     },
     {
         id: 5,
@@ -47,7 +51,8 @@ export const PRODUCTS = [
         price100ml: 4683,
         price60ml: 3587,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 4
     },
     {
         id: 6,
@@ -57,7 +62,8 @@ export const PRODUCTS = [
         price100ml: 4683,
         price60ml: 3587,
         category: "day",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 6
     },
     {
         id: 7,
@@ -67,7 +73,8 @@ export const PRODUCTS = [
         price100ml: 4715,
         price60ml: 3618,
         category: "day",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 4
     },
     {
         id: 8,
@@ -77,7 +84,8 @@ export const PRODUCTS = [
         price100ml: 4715,
         price60ml: 3618,
         category: "day",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 8
     },
     {
         id: 9,
@@ -87,7 +95,8 @@ export const PRODUCTS = [
         price100ml: 4854,
         price60ml: 3739,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 9
     },
     {
         id: 10,
@@ -97,7 +106,8 @@ export const PRODUCTS = [
         price100ml: 4867,
         price60ml: 3695,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 10
     },
     {
         id: 11,
@@ -107,7 +117,8 @@ export const PRODUCTS = [
         price100ml: 4905,
         price60ml: 3771,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 6
     },
     {
         id: 12,
@@ -117,7 +128,8 @@ export const PRODUCTS = [
         price100ml: 4937,
         price60ml: 3771,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 4
     },
     {
         id: 13,
@@ -127,7 +139,8 @@ export const PRODUCTS = [
         price100ml: 4937,
         price60ml: 3790,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 6
     },
     {
         id: 14,
@@ -137,7 +150,8 @@ export const PRODUCTS = [
         price100ml: 4905,
         price60ml: 3587,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 2
     },
     {
         id: 15,
@@ -147,7 +161,8 @@ export const PRODUCTS = [
         price100ml: 4949,
         price60ml: 3802,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 1
     },
     {
         id: 16,
@@ -157,7 +172,8 @@ export const PRODUCTS = [
         price100ml: 4949,
         price60ml: 3802,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 2
     },
     {
         id: 17,
@@ -167,7 +183,8 @@ export const PRODUCTS = [
         price100ml: 5032,
         price60ml: 3878,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 2
     },
     {
         id: 18,
@@ -177,7 +194,8 @@ export const PRODUCTS = [
         price100ml: 4765,
         price60ml: 3663,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 3
     },
     {
         id: 19,
@@ -187,7 +205,8 @@ export const PRODUCTS = [
         price100ml: 4696,
         price60ml: 3618,
         category: "day",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 1
     },
     {
         id: 20,
@@ -197,6 +216,7 @@ export const PRODUCTS = [
         price100ml: 4905,
         price60ml: 3771,
         category: "night",
-        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg"
+        imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+        stock: 3
     },
 ];
