@@ -43,7 +43,7 @@ function NavBar() {
                     <div className="dropstart">
                         <CartWidget></CartWidget>
                         <ul className="dropdown-menu">
-                            <a className="dropdown-item" href="/vercarrito">Ver Carrito</a>
+                            <Link to='/cart' className="dropdown-item"> Ver Carrito </Link>
                             <a className="dropdown-item" href="/vaciarcarrito">Vaciar Carrito</a>
                         </ul>
                     </div>

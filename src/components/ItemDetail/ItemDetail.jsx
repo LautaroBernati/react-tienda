@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 function ItemDetail({product}) {
+    const [isInCart, setIsInCart] = useState(false);
+
+
+
+    function onAddToCart(contador) {
+        console.log('Desde el padre, recibo el contador:', contador);
+        setIsInCart(true);
+        Swal.fire({
+            title: 'Éxito',
+            text: 'Se agregó el item al carrito',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        // aca se haria lo de agregar al carrito puntualmente
+    }
+
     return (
         <div className="w3-animate-opacity">
             <div className="card" style={{ width: "18rem" }}>
@@ -34,7 +52,16 @@ function ItemDetail({product}) {
                 </div>
             </div>
 
-        <ItemCount stock={product.stock}/>
+        {
+            !isInCart ?
+                <ItemCount stock={product.stock} addToCart={onAddToCart} />
+            :
+                <>
+                    <Link to='/cart'>
+                        <button className="btn btn-outline-success">Ir al carrito</button>
+                    </Link>
+                </>
+        }
 
         </div>
     );

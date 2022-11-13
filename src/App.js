@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Footer from './components/Footer/Footer';
+import CartView from './components/CartView/CartView';
 
 function App() {
   return (
@@ -14,58 +15,59 @@ function App() {
       <BrowserRouter>
         <NavBar />
 
-        
         <Routes>
-
           <Route
             path='/'
             element={
               <h1 className='text-center w3-animate-opacity'>Esto va a ser un Home</h1>
             }
-            >
+          >
           </Route>
-
           <Route
             path='/home'
             element={<Navigate to={'/'}></Navigate>}
-            >
+          >
           </Route>
-          
+          <Route
+            path='/cart'
+            element={ <CartView /> }
+          >
+          </Route>
+
           <Route
             path='/about'
             element={
               <h1 className='text-center'>Acerca de tal y cual</h1>
             }
-            >
+          >
           </Route>
 
           <Route
             path='/products'
             element={<ItemListContainer />}
-            >
+          >
           </Route>
           <Route
             path='/products/category/:catId'
             element={<ItemListContainer />}
-            >
+          >
           </Route>
           <Route
             path='/products/detail/:id'
             element={
-              <div style={{textAlign:"-webkit-center"}}>
+              <div style={{ textAlign: "-webkit-center" }}>
                 <ItemDetailContainer />
               </div>
             }
-            >
+          >
           </Route>
 
-          <Route 
+          <Route
             path='*'
-            // exact={true}
-            element = {
-                <h2 className='text-center'><p> oops 404 not found </p></h2>
-              }
-            />
+            element={
+              <h2 className='text-center'><p> oops 404 not found </p></h2>
+            }
+          />
 
         </Routes>
       </BrowserRouter>
