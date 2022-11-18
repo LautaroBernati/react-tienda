@@ -27,9 +27,9 @@ function NavBar() {
                             </a>
                             
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">                                
-                                <Link className="dropdown-item" to={"/products"}>Todos</Link>
-                                <Link className="dropdown-item" to={"/products/category/day"}>Dia</Link>
-                                <Link className="dropdown-item" to={"/products/category/night"}>Noche</Link>
+                                <Link className="dropdown-item" to={"/products"}>Todas</Link>
+                                <Link className="dropdown-item" to={"/products/category/day"}>De Día</Link>
+                                <Link className="dropdown-item" to={"/products/category/night"}>De Noche</Link>
                             </div>
                         </li>
                         <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="coming soon">
