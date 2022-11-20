@@ -44,17 +44,17 @@ export function CartContextProvider(props) {
             });
             setCart(newCart);
         }
-        // else {
-        //     const newCart = [...cart];
-        //     newCart.push(item);
-        //     setCart(newCart);
-        // }
         else {
-            setCart ( (newCart) => {
-                newCart.push(item);
-                return newCart;
-            });
+            const newCart = [...cart];
+            newCart.push(item);
+            setCart(newCart);
         }
+        // else {
+        //     setCart ( (newCart) => {
+        //         newCart.push(item);
+        //         return newCart;
+        //     });
+        // }
     }
 
     /**

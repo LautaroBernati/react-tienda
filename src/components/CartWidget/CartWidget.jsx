@@ -10,17 +10,16 @@ import { useContext } from "react";
  * @returns {JSX.Element}
  */
 function CartWidget(props) {
-  const context = useContext(cartContext);
+  const { totalItems } = useContext(cartContext);
 
   return (
-    <div>
-        <button className="nav-item dropdown-toggle" data-bs-toggle="dropdown">
-            {props.children}
-            <img className="cartwidget-img" src="/img/cart.svg" alt="carrito"/>
-            <small> { context.totalItems } </small>
-        </button>
+    <>
+        {/* <button className="nav-item dropdown-toggle" data-bs-toggle="dropdown"> */}
+            <small> { totalItems > 0 ? totalItems : '' } </small>
+            {/* {props.children} */}
+        {/* </button> */}
         
-    </div>
+    </>
   );
 }
 

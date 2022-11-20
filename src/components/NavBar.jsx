@@ -41,7 +41,10 @@ function NavBar() {
                     </ul>
                     
                     <div className="dropstart">
-                        <CartWidget></CartWidget>
+                        <button className="nav-item dropdown-toggle" data-bs-toggle="dropdown">
+                            <img className="cartwidget-img" src="/img/cart.svg" alt="carrito"/>
+                            <CartWidget></CartWidget>
+                        </button>
                         <ul className="dropdown-menu">
                             <Link to='/cart' className="dropdown-item"> Ver Carrito </Link>
                             <a className="dropdown-item" href="/vaciarcarrito">Vaciar Carrito</a>
