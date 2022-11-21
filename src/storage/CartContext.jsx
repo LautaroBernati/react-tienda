@@ -49,12 +49,29 @@ export function CartContextProvider(props) {
             newCart.push(item);
             setCart(newCart);
         }
-        // else {
-        //     setCart ( (newCart) => {
-        //         newCart.push(item);
-        //         return newCart;
-        //     });
-        // }
+    }
+
+    function removeItem(id) {
+        let indexABorrar = cart.findIndex(data => data.id === id);
+        if (indexABorrar === -1) {
+            console.error(`Id ${id} no encontrada`);
+            return;
+        }
+        const newCart = [...cart];
+        newCart.splice(indexABorrar, 1);
+        setCart(newCart);
+    }
+
+    function totalPrice() {
+        let price = 0;
+        for (const item of cart) {
+            price = price + (item.price100ml * item.quantity);
+        }
+        return price;
+    }
+
+    function clearCart() {
+        setCart([]);
     }
 
     /**
@@ -65,7 +82,11 @@ export function CartContextProvider(props) {
         totalItems: totalItemsInCart(),
         randomValue: 55,
         addToCart: addToCart,
-        cart: cart
+        cart: cart,
+        removeItem,
+        totalPrice,
+        clearCart
+
     }
 
     return (

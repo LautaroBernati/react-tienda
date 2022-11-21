@@ -55,12 +55,19 @@ function ItemDetail( {product} ) {
                     </li>
                     <br />
                     <div className="text-center">
-                        Precios
+                        <h5>
+                            Precio
+                        </h5>
+                        <small>Formato 100 mL</small>
                     </div>
                     <br />
                     <li className="list-group-item">
-                        <h5 className="priceTag">$ {product.price100ml} x 100 mL </h5>
-                        <h5 className="priceTag">$ {product.price60ml} x 60 mL </h5>
+                        <h5 className="priceTag">$ {product.price100ml} </h5>
+                        {/* <h5 className="priceTag">$ {product.price60ml} x 60 mL </h5> */}
+                    </li>
+                    <li className="list-group-item">
+                        <h5>En stock</h5>
+                        {product.stock} unidades
                     </li>
                 </ul>
                 <div className="text-center m-3">

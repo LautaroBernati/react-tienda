@@ -26,7 +26,8 @@ function Item(props) {
         <p>{props.product.creator}</p>
         <p> {props.product.gender} </p>
         <h4 className="priceTag">$ {props.product.price100ml}</h4>
-        <h4 className="priceTag">$ {props.product.price60ml}</h4>
+        <small>100 mL</small>
+        {/* <h4 className="priceTag">$ {props.product.price60ml}</h4> */}
       </div>
       <Link to={urlDetail}>
         <button className="btn btn-outline-info">Ver más!</button>

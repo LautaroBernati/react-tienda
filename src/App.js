@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar';
+// import { getSingleItemFromAPI } from './services/firebase';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
