@@ -27,6 +27,7 @@ function App() {
             <Route path='/products' element={<ItemListContainer />} />
             <Route path='/products/category/:catId' element={<ItemListContainer />} />
             <Route path='/products/detail/:id' element={ <div style={{ textAlign: "-webkit-center" }}> <ItemDetailContainer /> </div> } />
+            <Route path='/checkout/:id' element={ <h1> Gracias por tu compra. Esto sera un checkout </h1> } />
             <Route path='*' element={ <h2 className='text-center'><p> oops 404 not found </p></h2> } />
 
           </Routes>
