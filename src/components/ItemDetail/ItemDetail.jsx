@@ -29,7 +29,6 @@ function ItemDetail( {product} ) {
             showConfirmButton: false,
             timer: 1500
         });
-        // aca se haria lo de agregar al carrito puntualmente
 
         /**
          * @summary Objeto especial que, a través del operador spread, recibe product y después le extiende quantity.
@@ -68,7 +67,6 @@ function ItemDetail( {product} ) {
                     <br />
                     <li className="list-group-item">
                         <h5 className="priceTag">$ {product.price100ml} </h5>
-                        {/* <h5 className="priceTag">$ {product.price60ml} x 60 mL </h5> */}
                     </li>
                     <li className="list-group-item">
                         <h5>En stock</h5>

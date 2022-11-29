@@ -1,21 +1,18 @@
 import React, { useContext } from 'react';
-import cartContext from "../../storage/CartContext";
-import { Link } from "react-router-dom";
-import { createBuyOrderFS } from '../../services/firebase';
-import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import cartContext from "../../storage/CartContext";
+import { createBuyOrderFS } from '../../services/firebase';
+import BuyForm from '../BuyForm/BuyForm';
+import Swal from 'sweetalert2';
 
 function CartView() {
     const { cart, clearCart, removeItem, totalPrice } = useContext(cartContext);
     const navigate = useNavigate();
 
-    function CreateBuyOrder() {
+    function CreateBuyOrder(userData) {
         const buyData = {
-            buyer: {
-                name: "Com 34785",
-                phone: "1168041510",
-                email: "lautarobernati@gmail.com"
-            },
+            buyer: userData,
             items: cart,
             total: totalPrice(),
             date: new Date()
@@ -129,6 +126,8 @@ function CartView() {
             </Link>
 
             <button className='btn btn-warning' onClick={() => clearCart()}> Vaciar carrito </button>
+
+            <BuyForm onSubmit={CreateBuyOrder} />
         </div>
     )
 }
