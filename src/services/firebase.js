@@ -1,6 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, getDoc, query, where } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, doc, getDoc, query, where, addDoc, documentId, writeBatch } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,10 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const FirebaseApp = initializeApp(firebaseConfig);
 const DB = getFirestore(FirebaseApp);
-
-export function testDb() {
-    console.log(FirebaseApp);
-}
 
 /**
  * @func getItemsFromAPI
@@ -57,16 +52,16 @@ export async function getItemsFromAPI() {
     try {
         const CollectionProducts = collection(DB, 'products');
         let snapshot = (await getDocs(CollectionProducts)).docs;
-        
-        const products = snapshot.map( doc => {
+
+        const products = snapshot.map(doc => {
             return {
                 ...doc.data(), // Operador spread, saca y desarma todas las properties y las acomoda tal cual la id de arriba.
                 id: doc.id
             };
         });
-    
+
         return products;
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
 }
@@ -102,7 +97,7 @@ export async function getSingleItemFromAPI(id) {
             ...docSnap.data(),
             id: docSnap.id
         }
-    } catch(e) {
+    } catch (e) {
         console.error(e);
         return null;
     }
@@ -122,7 +117,7 @@ export async function getItemsFromAPIByCategory(category) {
 
         const productsSnapshot = (await getDocs(q)).docs;
 
-        const products = productsSnapshot.map( doc => {
+        const products = productsSnapshot.map(doc => {
             return {
                 ...doc.data(), // Operador spread, saca y desarma todas las properties y las acomoda tal cual la id de arriba.
                 id: doc.id
@@ -130,8 +125,286 @@ export async function getItemsFromAPIByCategory(category) {
         });
 
         return products;
-    } catch(e) {
+    } catch (e) {
         console.error(e);
         return null;
     }
 }
+
+/**
+ * @func createBuyOrderFS
+ * @summary Genera un nuevo documento con los datos de la compra y del comprador que se agrega a la collection 'buyorders'.
+ * @param {*} orderData Datos del comprador y de la compra en si.
+ * @returns {string | null} Caso sin error: ID de la orden de compra, que es en realidad la ID del documento generado en la collection 'buyorders'. En error: null.
+ * @async
+ */
+export async function createBuyOrderFS(orderData) {
+    try {
+        const colBuyOrdersRef = collection(DB, 'buyorders');
+        const docRef = await addDoc(colBuyOrdersRef, orderData);
+        return (docRef.id);
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
+export async function createBuyOrderFSWithStock(orderData) {
+    try {
+        const colProductsRef = collection(DB, 'products');
+        const colBuyOrdersRef = collection(DB, 'buyorders');
+        const batch = writeBatch();
+        // const docRef = await addDoc(colBuyOrdersRef, orderData);
+
+        let arrayIds = orderData.items.map(item => item.id);
+        const q = query(colProductsRef, where(documentId(), 'in', arrayIds) );
+        let products = await getDocs(q);
+        products.map( (doc) => {
+            let stockActual = doc.data().stock;
+            let itemInCart = orderData.items.find( item => item.id === doc.id);
+            let stockActualizado = stockActual - itemInCart.quantity;
+
+            batch.update(doc.ref, { stock: stockActualizado});
+        });
+        batch.commit();
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
+// async function exportItemsToFirestore() {
+//     const productos = [
+//         {
+//             id: 3,
+//             creator: "Armani",
+//             fragrance: "Acqua di Gio",
+//             gender: "Femenino",
+//             price100ml: 4600,
+//             price60ml: 3550,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 7
+//         },
+//         {
+//             id: 3,
+//             creator: "Paco Rabanne",
+//             fragrance: "One Million",
+//             gender: "Masculino",
+//             price100ml: 4550,
+//             price60ml: 3500,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 7
+//         },
+//         {
+//             id: 3,
+//             creator: "Paco Rabanne",
+//             fragrance: "Invictus",
+//             gender: "Masculino",
+//             price100ml: 4400,
+//             price60ml: 3555,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 7
+//         },
+//         {
+//             id: 3,
+//             creator: "Paco Rabanne",
+//             fragrance: "Invictus Intense",
+//             gender: "Masculino",
+//             price100ml: 4518,
+//             price60ml: 3479,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 7
+//         },
+//         {
+//             id: 4,
+//             creator: "Paco Rabanne",
+//             fragrance: "Lady Million",
+//             gender: "Femenino",
+//             price100ml: 5203,
+//             price60ml: 4005,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 3
+//         },
+//         {
+//             id: 5,
+//             creator: "Paco Rabanne",
+//             fragrance: "Black XS For Her",
+//             gender: "Femenino",
+//             price100ml: 4683,
+//             price60ml: 3587,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 4
+//         },
+//         {
+//             id: 6,
+//             creator: "Paco Rabanne",
+//             fragrance: "Phantom",
+//             gender: "Masculino",
+//             price100ml: 4683,
+//             price60ml: 3587,
+//             category: "day",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 6
+//         },
+//         {
+//             id: 7,
+//             creator: "Armani",
+//             fragrance: "Acqua Di Gio Men",
+//             gender: "Masculino",
+//             price100ml: 4715,
+//             price60ml: 3618,
+//             category: "day",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 4
+//         },
+//         {
+//             id: 9,
+//             creator: "Dior",
+//             fragrance: "Miss Dior",
+//             gender: "Femenino",
+//             price100ml: 4854,
+//             price60ml: 3739,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 9
+//         },
+//         {
+//             id: 10,
+//             creator: "Dior",
+//             fragrance: "J'Adore",
+//             gender: "Masculino",
+//             price100ml: 4867,
+//             price60ml: 3695,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 10
+//         },
+//         {
+//             id: 11,
+//             creator: "Armani",
+//             fragrance: "Acqua Di Gioia",
+//             gender: "Femenino",
+//             price100ml: 4905,
+//             price60ml: 3771,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 6
+//         },
+//         {
+//             id: 12,
+//             creator: "Armani",
+//             fragrance: "Air di Gioia",
+//             gender: "Femenino",
+//             price100ml: 4937,
+//             price60ml: 3771,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 4
+//         },
+//         {
+//             id: 13,
+//             creator: "Dior",
+//             fragrance: "Sauvage",
+//             gender: "Masculino",
+//             price100ml: 4937,
+//             price60ml: 3790,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 6
+//         },
+//         {
+//             id: 14,
+//             creator: "Armani",
+//             fragrance: "Armani Code",
+//             gender: "Masculino",
+//             price100ml: 4905,
+//             price60ml: 3587,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 2
+//         },
+//         {
+//             id: 15,
+//             creator: "Carolina Herrera",
+//             fragrance: "Bad Boy",
+//             gender: "Masculino",
+//             price100ml: 4949,
+//             price60ml: 3802,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 1
+//         },
+//         {
+//             id: 16,
+//             creator: "Carolina Herrera",
+//             fragrance: "Good Girl",
+//             gender: "Femenino",
+//             price100ml: 4949,
+//             price60ml: 3802,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 2
+//         },
+//         {
+//             id: 17,
+//             creator: "Armani",
+//             fragrance: "Armani Code Sport",
+//             gender: "Masculino",
+//             price100ml: 5032,
+//             price60ml: 3878,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 2
+//         },
+//         {
+//             id: 18,
+//             creator: "Carolina Herrera",
+//             fragrance: "212 VIP Black",
+//             gender: "Masculino",
+//             price100ml: 4765,
+//             price60ml: 3663,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 3
+//         },
+//         {
+//             id: 19,
+//             creator: "Armani",
+//             fragrance: "Attitude",
+//             gender: "Masculino",
+//             price100ml: 4696,
+//             price60ml: 3618,
+//             category: "day",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 1
+//         },
+//         {
+//             id: 20,
+//             creator: "Armani",
+//             fragrance: "Stronger With You",
+//             gender: "Masculino",
+//             price100ml: 4905,
+//             price60ml: 3771,
+//             category: "night",
+//             imgurl: "https://i.pinimg.com/originals/05/5c/a1/055ca1eeac79ae6067f46b4809f9d387.jpg",
+//             stock: 3
+//         },
+//     ];
+
+//     const colRef = collection(DB, 'products');
+
+//     for (let item of productos) {
+//         delete item.id
+//         delete item.price60ml;
+
+//         let docRef = await addDoc(colRef, item);
+//         console.log('Created doc with id', docRef.id);
+//     }
+// }
+

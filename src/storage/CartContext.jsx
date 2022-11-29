@@ -62,6 +62,11 @@ export function CartContextProvider(props) {
         setCart(newCart);
     }
 
+    /**
+     * @func totalPrice
+     * @summary Calcula y retorna el precio total de los items del carrito.
+     * @returns {number} Precio total del carrito.
+     */
     function totalPrice() {
         let price = 0;
         for (const item of cart) {

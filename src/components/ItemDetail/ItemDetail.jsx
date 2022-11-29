@@ -7,7 +7,12 @@ import cartContext from "../../storage/CartContext";
 function ItemDetail( {product} ) {
     const [isInCart, setIsInCart] = useState(false);
     // const context = useContext(cartContext);
-    const { addToCart } = useContext(cartContext); // Destructuro para solo usar la funcion addToCart y la property cart
+    const { cart, addToCart } = useContext(cartContext); // Destructuro para solo usar la funcion addToCart y la property cart
+    
+    let itemInCart = cart.find( item => product.id === item.id);
+    let stock = product.stock;
+    if (itemInCart) stock -= itemInCart.quantity;
+    
 
     /**
      * @func onAddToCart Función que se ejecuta cuando se hace click en "Agregar al carrito" (parte del componente hijo)
@@ -24,7 +29,6 @@ function ItemDetail( {product} ) {
             showConfirmButton: false,
             timer: 1500
         });
-        // aca se haria lo de agregar al carrito puntualmente
 
         /**
          * @summary Objeto especial que, a través del operador spread, recibe product y después le extiende quantity.
@@ -63,11 +67,10 @@ function ItemDetail( {product} ) {
                     <br />
                     <li className="list-group-item">
                         <h5 className="priceTag">$ {product.price100ml} </h5>
-                        {/* <h5 className="priceTag">$ {product.price60ml} x 60 mL </h5> */}
                     </li>
                     <li className="list-group-item">
                         <h5>En stock</h5>
-                        {product.stock} unidades
+                        {stock} unidades
                     </li>
                 </ul>
                 <div className="text-center m-3">
@@ -76,16 +79,17 @@ function ItemDetail( {product} ) {
                     </p>
                 </div>
             </div>
-
-        {
-            !isInCart ?
-                <ItemCount stock={product.stock} addToCart={onAddToCart} />
-            :
-                <>
-                    <Link to='/cart'>
-                        <button className="btn btn-outline-success">Ir al carrito</button>
-                    </Link>
-                </>
+        { (stock === 0) ?
+            ( <>Producto sin stock</> ) : (
+                (!isInCart) ?
+                    <ItemCount stock={stock} addToCart={onAddToCart} />
+                :
+                    <>
+                        <Link to='/cart'>
+                            <button className="btn btn-outline-success">Ir al carrito</button>
+                        </Link>
+                    </>
+            )
         }
 
         </div>
