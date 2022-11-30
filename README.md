@@ -16,7 +16,7 @@
 * SweetAlert 2
 
 ## ¿Cómo ver la aplicación en vivo?
-Puede ver la versión de producción entrando [aquí](https://duckduckgo.com).
+Puede ver la versión de producción entrando [aquí](https://viafrance-tienda.netlify.app).
 
 ## ¿Cómo levantar el proyecto localmente?
 1. Clonar repositorio.
