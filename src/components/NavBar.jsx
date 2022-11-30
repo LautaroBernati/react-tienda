@@ -1,8 +1,12 @@
 import "./navbar.css";
 import CartWidget from "./CartWidget/CartWidget";
 import { Link } from "react-router-dom";
+import cartContext from "../storage/CartContext";
+import { useContext } from "react";
 
 function NavBar() {
+    const { clearCart } = useContext(cartContext);
+
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -32,12 +36,12 @@ function NavBar() {
                                 <Link className="dropdown-item" to={"/products/category/night"}>De Noche</Link>
                             </div>
                         </li>
-                        <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="coming soon">
+                        {/* <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="coming soon">
                             <a className="nav-link disabled" href="#">Login</a>
                         </li>
                         <li className="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" title="coming soon">
                             <a className="nav-link disabled" href="#">Logout</a>
-                        </li>
+                        </li> */}
                     </ul>
                     
                     <div className="dropstart">
@@ -47,7 +51,7 @@ function NavBar() {
                         </button>
                         <ul className="dropdown-menu">
                             <Link to='/cart' className="dropdown-item"> Ver Carrito </Link>
-                            <a className="dropdown-item" href="/vaciarcarrito">Vaciar Carrito</a>
+                            <button className="dropdown-item" onClick={() => clearCart()}>Vaciar Carrito</button>
                         </ul>
                     </div>
                 </div>

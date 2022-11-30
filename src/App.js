@@ -10,6 +10,8 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import Footer from './components/Footer/Footer';
 import CartView from './components/CartView/CartView';
 import { CartContextProvider } from './storage/CartContext';
+import Welcome from './components/Welcome/Welcome';
+import CheckoutView from './components/Checkout/CheckoutView';
 
 function App() {
   return (
@@ -20,14 +22,14 @@ function App() {
 
           <Routes>
 
-            <Route path='/' element={ <h1 className='text-center w3-animate-opacity'>Esto va a ser un Home</h1> } />
+            <Route path='/' element={ <Welcome /> } />
             <Route path='/home' element={<Navigate to={'/'}></Navigate>}/>
             <Route path='/cart' element={ <CartView /> } />
             <Route path='/about' element={ <h1 className='text-center'>Acerca de tal y cual</h1> } />
             <Route path='/products' element={<ItemListContainer />} />
             <Route path='/products/category/:catId' element={<ItemListContainer />} />
             <Route path='/products/detail/:id' element={ <div style={{ textAlign: "-webkit-center" }}> <ItemDetailContainer /> </div> } />
-            <Route path='/checkout/:id' element={ <h1> Gracias por tu compra. Esto sera un checkout </h1> } />
+            <Route path='/checkout/:id' element={ <CheckoutView /> } />
             <Route path='*' element={ <h2 className='text-center'><p> oops 404 not found </p></h2> } />
 
           </Routes>

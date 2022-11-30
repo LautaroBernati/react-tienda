@@ -153,20 +153,44 @@ export async function createBuyOrderFSWithStock(orderData) {
     try {
         const colProductsRef = collection(DB, 'products');
         const colBuyOrdersRef = collection(DB, 'buyorders');
-        const batch = writeBatch();
-        // const docRef = await addDoc(colBuyOrdersRef, orderData);
+        const batch = writeBatch(DB);
 
         let arrayIds = orderData.items.map(item => item.id);
         const q = query(colProductsRef, where(documentId(), 'in', arrayIds) );
-        let products = await getDocs(q);
-        products.map( (doc) => {
+        let productsSnapshot = await getDocs(q);
+
+        productsSnapshot.docs.forEach( (doc) => {
             let stockActual = doc.data().stock;
             let itemInCart = orderData.items.find( item => item.id === doc.id);
             let stockActualizado = stockActual - itemInCart.quantity;
 
             batch.update(doc.ref, { stock: stockActualizado});
         });
-        batch.commit();
+
+        const docOrderRef = doc(colBuyOrdersRef);
+        batch.set(docOrderRef, orderData);
+
+        await batch.commit();
+
+        return docOrderRef.id;
+    } catch (e) {
+        console.error(e);
+        return null;
+    }
+}
+
+export async function getBuyOrderByID(id) {
+    try {
+        const docRef = doc(DB, 'buyorders', id);
+        const docSnap = await getDoc(docRef);
+        if (!docSnap.exists()) {
+            throw new Error(`El documento con id ${id} no existe`);
+        }
+        console.log(docSnap)
+        return {
+            ...docSnap.data(),
+            date: docSnap._document.data.value.mapValue.fields.date.timestampValue
+        };
     } catch (e) {
         console.error(e);
         return null;
@@ -407,4 +431,3 @@ export async function createBuyOrderFSWithStock(orderData) {
 //         console.log('Created doc with id', docRef.id);
 //     }
 // }
-

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import cartContext from "../../storage/CartContext";
-import { createBuyOrderFS } from '../../services/firebase';
+import { createBuyOrderFSWithStock } from '../../services/firebase';
 import BuyForm from '../BuyForm/BuyForm';
 import Swal from 'sweetalert2';
 
@@ -27,7 +27,7 @@ function CartView() {
             didOpen: () => Swal.showLoading()
         })
         
-        createBuyOrderFS(buyData)
+        createBuyOrderFSWithStock(buyData)
             .then(res => {
                 console.log(res);
                 clearCart();
@@ -81,7 +81,6 @@ function CartView() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* //TODO: Arreglar la lista segun el carrito*/}
                     {cart.map((cartItem) => (
                         <tr key={cartItem.id}>
                             <td>
@@ -117,10 +116,10 @@ function CartView() {
             <br />
             <hr />
             <h4>Total a pagar:</h4>
-            <h5>$ {totalPrice()}</h5>
+            <h3>$ {totalPrice()}</h3>
             <br />
 
-            <button className='btn btn-success' onClick={() => CreateBuyOrder()}> Finalizar compra </button>
+            {/* <button className='btn btn-success' onClick={() => CreateBuyOrder()}> Continuar </button> */}
             <Link to='/products'>
                 <button className='btn btn-info'> Volver al catálogo </button>
             </Link>
