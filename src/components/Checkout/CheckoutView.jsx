@@ -14,8 +14,6 @@ function CheckoutView() {
         getBuyOrderByID(id)
             .then((orderFromDB) => {
                 setBuyOrder(orderFromDB);
-                console.log(orderFromDB.date)
-                console.log(new Date(orderFromDB.date));
             })
             .catch((error) => console.error(error))
             .finally(() => setIsLoading(false));

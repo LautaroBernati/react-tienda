@@ -25,7 +25,7 @@ function App() {
             <Route path='/' element={ <Welcome /> } />
             <Route path='/home' element={<Navigate to={'/'}></Navigate>}/>
             <Route path='/cart' element={ <CartView /> } />
-            <Route path='/about' element={ <h1 className='text-center'>Acerca de tal y cual</h1> } />
+            <Route path='/about' element={ <h1 className='text-center'> Tienda desarrollada en el curso de ReactJS de CoderHouse</h1> } />
             <Route path='/products' element={<ItemListContainer />} />
             <Route path='/products/category/:catId' element={<ItemListContainer />} />
             <Route path='/products/detail/:id' element={ <div style={{ textAlign: "-webkit-center" }}> <ItemDetailContainer /> </div> } />

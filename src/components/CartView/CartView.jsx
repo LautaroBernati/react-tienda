@@ -29,7 +29,6 @@ function CartView() {
         
         createBuyOrderFSWithStock(buyData)
             .then(res => {
-                console.log(res);
                 clearCart();
                 Swal.fire({
                     icon: 'success',
@@ -126,7 +125,7 @@ function CartView() {
 
             <button className='btn btn-warning' onClick={() => clearCart()}> Vaciar carrito </button>
 
-            <BuyForm onSubmit={CreateBuyOrder} />
+            <BuyForm onSubmit={CreateBuyOrder} total={totalPrice()} />
         </div>
     )
 }
