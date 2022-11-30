@@ -186,7 +186,6 @@ export async function getBuyOrderByID(id) {
         if (!docSnap.exists()) {
             throw new Error(`El documento con id ${id} no existe`);
         }
-        console.log(docSnap)
         return {
             ...docSnap.data(),
             date: docSnap._document.data.value.mapValue.fields.date.timestampValue

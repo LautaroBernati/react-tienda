@@ -11,7 +11,7 @@ function NavBar() {
     <>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/" style={{textAlign: "center"}}>Tienda - Via France</a>
+                <Link className="navbar-brand" to={"/home"} style={{textAlign: "center"}}>Tienda - Via France</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -19,16 +19,21 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
                         <li className="nav-item active">
-                        <a className="nav-link" href="/home">Home</a>
+                            <Link className="nav-link" to={"/home"}>Home</Link>
                         </li>
                         <li className="nav-item">
-                        <a className="nav-link" href="/about">Acerca De</a>
+                            <Link className="nav-link" to={"/about"}>Acerca De</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            
-                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <Link
+                                className="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"
+                                role="button"
+                                id="navbarDropdown">
                                 Catálogo
-                            </a>
+                            </Link>
+
                             
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">                                
                                 <Link className="dropdown-item" to={"/products"}>Todas</Link>

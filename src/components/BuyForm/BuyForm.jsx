@@ -9,7 +9,7 @@ function BuyForm(props) {
         phone: "",
         email: "",
     });
-    let err = false;
+
 
     function onInputChange(event) {
         const inputName = event.target.name;
@@ -21,11 +21,9 @@ function BuyForm(props) {
     }
 
     function onSubmit(event) {
-        err = false;
         event.preventDefault();
         if (!userData.name || !userData.email || !userData.phone) { // Validación muy básica, required está siendo ignorado.
             console.error('Formulario incompleto');
-            err = true;
             return;
         }
 
